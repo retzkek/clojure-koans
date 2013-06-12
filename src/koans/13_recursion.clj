@@ -1,20 +1,42 @@
 (defn is-even? [n]
   (if (= n 0)
-    __
-    (___ (is-even? (dec n)))))
+    true
+    (not (is-even? (dec n)))))
 
 (defn is-even-bigint? [n]
   (loop [n   n
          acc true]
     (if (= n 0)
-      __
+      acc
       (recur (dec n) (not acc)))))
 
 (defn recursive-reverse [coll]
-  __)
+  (loop [result '()
+         remain coll]
+    (if (empty? remain)
+      result
+      (recur (conj result (first remain)) (rest remain)))))
+
+; works for the first few, but kinda against the spirit of the problem,
+; and chokes on 1000!
+;(defn factorial [n]
+;  (reduce * (range 1 (+ n 1))))
+
+; works, but could be better
+;(defn factorial [n]
+; (loop [result 1N
+;       i 1N
+;         n n]
+;    (if (> i n)
+;      result
+;      (recur (* result i) (inc i) n))))
 
 (defn factorial [n]
-  __)
+  (loop [result 1N
+         n n]
+    (if (= n 0)
+      result
+      (recur (* result n) (dec n)))))
 
 (meditations
   "Recursion ends with a base case"
